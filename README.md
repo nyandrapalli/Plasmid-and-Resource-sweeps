@@ -2,7 +2,7 @@
 
 This repository contains the source code and compact result tables for the stochastic simulation sweeps used as publication source material.
 
-The simulations use exact Gillespie stochastic simulation with finite RNAP and ribosome pools. The paracrine systems include finite-distance signal transfer between two compartments using a 1 cm separation and 5 s mean transfer time.
+The simulations use the Gillespie stochastic simulation algorithm (SSA) with varying plasmid concentrations and resource pools.
 
 ## Repository structure
 
@@ -16,9 +16,9 @@ The simulations use exact Gillespie stochastic simulation with finite RNAP and r
 | Label | Model description |
 |---|---|
 | Autocrine (nc-3) | Lux-only circuit in one cell: pCon-luxI, pCon-luxR, and pLux-eGFP. |
-| Paracrine (c-3) | Lux sender and receiver split across two cells, with finite-distance AHL transfer. |
+| Paracrine (c-3) | Lux sender and receiver split across two cells. |
 | Autocrine (c-6) | Lux-Las circuit in one cell. |
-| Paracrine (c-6) | Lux-Las circuit split across two cells, with finite-distance AHL and S transfer. |
+| Paracrine (c-6) | Lux-Las circuit split across two cells. |
 
 ## Plasmid sweep
 
