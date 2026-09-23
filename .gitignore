@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+outputs/
+*/outputs/
+*.tmp.csv
+*_timelapse_raw.csv
+*_raw.csv
