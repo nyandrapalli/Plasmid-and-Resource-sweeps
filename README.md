@@ -10,6 +10,7 @@ The simulations use the Gillespie stochastic simulation algorithm (SSA) with var
 |---|---|
 | `plasmid_sweep/` | Plasmid copy-number sweeps for the four circuit architectures. |
 | `resource_sweep/` | RNAP/ribosome resource sweeps for the four circuit architectures. |
+| `event_counting/` | Event-resolved SSA comparisons of autocrine and paracrine architectures. |
 
 ## Circuit labels
 
@@ -39,6 +40,17 @@ Summary data:
 - `resource_sweep/data/resource_sweep_summary.csv`
 - `resource_sweep/data/*_cv2_heatmap_matrix.csv`
 - `resource_sweep/data/*_cv2_lines.csv`
+
+## Event-count analysis
+
+See `event_counting/README.md` for the event-resolved comparison scripts, default parameters, and output definitions.
+
+Run the three-plasmid and six-plasmid comparisons:
+
+```bash
+python event_counting/scripts/run_event_counter_nc3_vs_c3.py --out event_counting/outputs/nc3_vs_c3
+python event_counting/scripts/run_event_counter_c6.py --out event_counting/outputs/c6
+```
 
 ## Installation
 
