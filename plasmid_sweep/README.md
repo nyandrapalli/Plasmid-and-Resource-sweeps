@@ -8,7 +8,7 @@ This repository contains the stochastic simulation source files used for the pla
 |---|---|
 | Autocrine (nc-3) | Lux-only circuit in one cell: pCon-luxI, pCon-luxR, and pLux-eGFP. |
 | Paracrine (c-3) | Lux sender and receiver split across two cells, with 1 cm separation and 5 s AHL transfer time. |
-| Autocrine (c-6) | Lux-Las circuit in one cell. |
+| Autocrine (nc-6) | Lux-Las circuit in one cell. |
 | Paracrine (c-6) | Lux-Las circuit split across two cells, with 1 cm separation and 5 s transfer time for AHL and S. |
 
 ## Sweep design

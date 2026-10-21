@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Autocrine (c-6) timelapse (single cell containing all plasmids from Paracrine (c-6) without finite-distance transfer).
+Autocrine (nc-6) timelapse (single cell containing all plasmids from Paracrine (c-6) without finite-distance transfer).
 Plasmids: pCon–LuxI, pCon–LasR, pCon–LuxR, pLas–GFP, pLux–GFP, pLux–LasI.
 Exports pLas–GFP and pLux–GFP trajectories separately and their sum.
 """
@@ -540,7 +540,7 @@ def run(
     N: int = 500,
     T_end: int = 6000,
     window: tuple[int, int] = (2500, 3000),
-    outdir: str = "autocrine_c6_timelapse_out",
+    outdir: str = "autocrine_nc6_timelapse_out",
     seed: int = 444,
     copies: int = 10,
     make_plot: bool = True,
@@ -572,7 +572,7 @@ def run(
     df = pd.DataFrame(G_las_curves, columns=[f'GLas_t{t}' for t in t_grid])
     df = df.join(pd.DataFrame(G_lux_curves, columns=[f'GLux_t{t}' for t in t_grid]))
     df = df.assign(replicate_id=lambda d: np.arange(N))
-    df.to_csv(os.path.join(outdir, 'autocrine_c6_timelapse_raw.csv'), index=False)
+    df.to_csv(os.path.join(outdir, 'autocrine_nc6_timelapse_raw.csv'), index=False)
 
     w0, w1 = window
     block_las = G_las_curves[:, w0 : w1 + 1].mean(axis=1)
@@ -593,7 +593,7 @@ def run(
                   'mean_pLasGFP': mean_las, 'sd_pLasGFP': sd_las, 'CV_pLasGFP': cv_las, 'CV2_pLasGFP': cv2_las,
                   'mean_pLuxGFP': mean_lux, 'sd_pLuxGFP': sd_lux, 'CV_pLuxGFP': cv_lux, 'CV2_pLuxGFP': cv2_lux,
                   'N': N, 'T_end': T_end, 'window_start': w0, 'window_end': w1, 'copies': copies}]).to_csv(
-        os.path.join(outdir, 'autocrine_c6_summary.csv'), index=False
+        os.path.join(outdir, 'autocrine_nc6_summary.csv'), index=False
     )
 
     if make_plot:
@@ -607,10 +607,10 @@ def run(
         plt.axvspan(w0, w1, alpha=0.1, label='Steady window')
         plt.xlabel('Time')
         plt.ylabel('GFP counts')
-        plt.title(f'Autocrine (c-6) timelapse (copies={copies})')
+        plt.title(f'Autocrine (nc-6) timelapse (copies={copies})')
         plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(outdir, 'autocrine_c6_timelapse_plot.png'), dpi=150)
+        plt.savefig(os.path.join(outdir, 'autocrine_nc6_timelapse_plot.png'), dpi=150)
         plt.close()
 
 def parse_args():
@@ -620,7 +620,7 @@ def parse_args():
     ap.add_argument("--w0", type=int, default=2500)
     ap.add_argument("--w1", type=int, default=3000)
     ap.add_argument("--copies", type=int, default=10, help="Plasmid copy number per plasmid type")
-    ap.add_argument("--out", type=str, default="autocrine_c6_timelapse_out")
+    ap.add_argument("--out", type=str, default="autocrine_nc6_timelapse_out")
     ap.add_argument("--no-plot", action="store_true", help="Skip timelapse plot generation")
     return ap.parse_args()
 

@@ -1,0 +1,9 @@
+system,condition_key,copies,reporter_metric,earlier_compartment_cv2,new_multicell_population_cv2,new_vs_earlier_percent
+Autocrine (nc-3),autocrine_nc3,5,pLux-eGFP,0.0302076306552607,0.0102731879266254,-65.99
+Paracrine (c-3),paracrine_c3,5,pLux-eGFP,0.0296459101747154,0.0105236361544594,-64.50
+Autocrine (nc-6),autocrine_nc6,5,pLux-eGFP + pLas-mScarlet,0.0167250746601826,0.00572260194354,-65.78
+Paracrine (c-6),paracrine_c6,5,pLux-eGFP + pLas-eGFP,0.0167535676242397,0.00543255162032,-67.57
+Autocrine (nc-3),autocrine_nc3,40,pLux-eGFP,0.0044277949042678,0.0018706195442924,-57.75
+Paracrine (c-3),paracrine_c3,40,pLux-eGFP,0.0044332516422165,0.0015836467319971,-64.28
+Autocrine (nc-6),autocrine_nc6,40,pLux-eGFP + pLas-mScarlet,0.0042337002089596,0.00129735886121,-69.36
+Paracrine (c-6),paracrine_c6,40,pLux-eGFP + pLas-eGFP,0.0029103410605291,0.000930149186416,-68.04

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Binned SSA event counters for Autocrine (c-6) and Paracrine (c-6).
+"""Binned SSA event counters for Autocrine (nc-6) and Paracrine (c-6).
 
-The counted SSA kernels are generated from the Autocrine (c-6) and Paracrine
+The counted SSA kernels are generated from the Autocrine (nc-6) and Paracrine
 (c-6) models distributed with this repository. This keeps the reaction network
 identical to the plasmid-sweep simulations while adding per-event counts.
 """
@@ -21,7 +21,7 @@ import numpy as np
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-AUTOCRINE_C6_SOURCE = REPOSITORY_ROOT / "plasmid_sweep" / "models" / "autocrine_c6_model.py"
+AUTOCRINE_NC6_SOURCE = REPOSITORY_ROOT / "plasmid_sweep" / "models" / "autocrine_nc6_model.py"
 PARACRINE_C6_SOURCE = REPOSITORY_ROOT / "plasmid_sweep" / "models" / "paracrine_c6_model.py"
 
 
@@ -38,7 +38,7 @@ def _extract_events(paths: List[Path]) -> List[str]:
     return events
 
 
-EVENTS = _extract_events([AUTOCRINE_C6_SOURCE, PARACRINE_C6_SOURCE])
+EVENTS = _extract_events([AUTOCRINE_NC6_SOURCE, PARACRINE_C6_SOURCE])
 EVENT_INDEX = {name: idx for idx, name in enumerate(EVENTS)}
 
 
@@ -58,7 +58,7 @@ def record_event(counts: np.ndarray, t: float, T_end: float, bin_size: float, ev
 
 
 def _load_counted_cond4():
-    source = AUTOCRINE_C6_SOURCE.read_text(encoding="utf-8")
+    source = AUTOCRINE_NC6_SOURCE.read_text(encoding="utf-8")
     source = source.replace(
         "def gillespie_cond4(P: Params4, seed: int | None = None):",
         "def gillespie_cond4_counted(P, seed=None, bin_size=10, max_events=5000000):",
@@ -89,7 +89,7 @@ def _load_counted_cond4():
         "record_event": record_event,
         "n_bins": n_bins,
     })
-    exec(compile(source, str(AUTOCRINE_C6_SOURCE), "exec"), namespace)
+    exec(compile(source, str(AUTOCRINE_NC6_SOURCE), "exec"), namespace)
     return namespace["Params4"], namespace["gillespie_cond4_counted"]
 
 
@@ -244,7 +244,7 @@ def run_condition(
     qc_rows = []
 
     for rep_id, rep_seed in enumerate(seeds):
-        if condition == "autocrine_c6":
+        if condition == "autocrine_nc6":
             params = Params4(
                 RNAP_total=RNAP_total,
                 Ribo_total=Ribo_total,
@@ -330,7 +330,7 @@ def run_condition(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run binned SSA event counters for Autocrine (c-6) vs Paracrine (c-6)."
+        description="Run binned SSA event counters for Autocrine (nc-6) vs Paracrine (c-6)."
     )
     parser.add_argument("-N", type=int, default=500)
     parser.add_argument("--T", type=int, default=3500)
@@ -357,7 +357,7 @@ def main() -> None:
     qc_rows: List[Dict[str, object]] = []
 
     for copy_index, copies in enumerate(args.copies):
-        for condition_index, condition in enumerate(["autocrine_c6", "paracrine_c6"]):
+        for condition_index, condition in enumerate(["autocrine_nc6", "paracrine_c6"]):
             condition_seed = args.seed + copy_index * 1000 + condition_index * 100
             print(f"Running {condition}, copies={copies}, N={args.N}")
             summaries, event_rows, qc = run_condition(

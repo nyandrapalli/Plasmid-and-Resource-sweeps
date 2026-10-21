@@ -24,11 +24,11 @@ def _stats(values: np.ndarray) -> tuple[float, float, float, float]:
 
 def _run_point(job: tuple[int, int, int, int, int, int, int, str]) -> dict:
     rnap, ribo, n, t_end, w0, w1, seed, outdir_s = job
-    from autocrine_c6_model import Params4, gillespie_cond4
+    from autocrine_nc6_model import Params4, gillespie_cond4
 
     outdir = Path(outdir_s) / f"RNAP{rnap}_Ribo{ribo}"
     outdir.mkdir(parents=True, exist_ok=True)
-    raw_path = outdir / "autocrine_c6_raw.csv"
+    raw_path = outdir / "autocrine_nc6_raw.csv"
 
     if not raw_path.exists():
         params = Params4(
@@ -68,7 +68,7 @@ def _run_point(job: tuple[int, int, int, int, int, int, int, str]) -> dict:
     mean_las, sd_las, cv_las, cv2_las = _stats(las_block)
     mean_lux, sd_lux, cv_lux, cv2_lux = _stats(lux_block)
     return {
-        "condition": "Autocrine (c-6)",
+        "condition": "Autocrine (nc-6)",
         "RNAP": rnap,
         "Ribo": ribo,
         "copies": 10,
@@ -98,7 +98,7 @@ def main() -> None:
     parser.add_argument("--w0", type=int, default=3000)
     parser.add_argument("--w1", type=int, default=4000)
     parser.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 2))
-    parser.add_argument("--out", type=Path, default=ROOT / "outputs" / "autocrine_c6")
+    parser.add_argument("--out", type=Path, default=ROOT / "outputs" / "autocrine_nc6")
     args = parser.parse_args()
 
     args.out.mkdir(parents=True, exist_ok=True)
@@ -107,14 +107,14 @@ def main() -> None:
         for i, (rnap, ribo) in enumerate((r, b) for r in RNAP_VALUES for b in RIBO_VALUES)
     ]
     summaries = []
-    summary_path = args.out / "summary_autocrine_c6.csv"
+    summary_path = args.out / "summary_autocrine_nc6.csv"
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(_run_point, job): (job[0], job[1]) for job in jobs}
         for future in as_completed(futures):
             rnap, ribo = futures[future]
             summaries.append(future.result())
             pd.DataFrame(summaries).sort_values(["RNAP", "Ribo"]).to_csv(summary_path, index=False)
-            print(f"Autocrine (c-6): RNAP={rnap}, Ribo={ribo}")
+            print(f"Autocrine (nc-6): RNAP={rnap}, Ribo={ribo}")
 
 
 if __name__ == "__main__":

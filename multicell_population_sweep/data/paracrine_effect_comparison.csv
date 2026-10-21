@@ -1,0 +1,5 @@
+circuit_pair,copies,earlier_paracrine_vs_autocrine_percent,new_multicell_paracrine_vs_autocrine_percent
+nc-3 vs c-3,5,-1.86,2.44
+nc-6 vs c-6,5,0.17,-5.07
+nc-3 vs c-3,40,0.12,-15.34
+nc-6 vs c-6,40,-31.26,-28.30

@@ -6,7 +6,7 @@ from pathlib import Path
 SCRIPTS = [
     "run_autocrine_nc3_resource_sweep.py",
     "run_paracrine_c3_resource_sweep.py",
-    "run_autocrine_c6_resource_sweep.py",
+    "run_autocrine_nc6_resource_sweep.py",
     "run_paracrine_c6_resource_sweep.py",
 ]
 

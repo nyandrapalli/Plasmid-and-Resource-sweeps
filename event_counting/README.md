@@ -7,7 +7,7 @@ This section contains event-resolved Gillespie stochastic simulation algorithm (
 | Script | Architectures compared |
 |---|---|
 | `scripts/run_event_counter_nc3_vs_c3.py` | Autocrine (nc-3) and Paracrine (c-3) |
-| `scripts/run_event_counter_c6.py` | Autocrine (c-6) and Paracrine (c-6) |
+| `scripts/run_event_counter_nc6_vs_c6.py` | Autocrine (nc-6) and Paracrine (c-6) |
 
 The c-3 driver is standalone. The c-6 driver instruments the corresponding models in `plasmid_sweep/models/`, preserving their reaction networks while recording the selected SSA event in each time bin.
 
@@ -29,7 +29,7 @@ From the repository root, install the requirements and run either comparison:
 ```bash
 python -m pip install -r requirements.txt
 python event_counting/scripts/run_event_counter_nc3_vs_c3.py --out event_counting/outputs/nc3_vs_c3
-python event_counting/scripts/run_event_counter_c6.py --out event_counting/outputs/c6
+python event_counting/scripts/run_event_counter_nc6_vs_c6.py --out event_counting/outputs/nc6_vs_c6
 ```
 
 Use `-h` to list configurable simulation parameters. A short verification run can be performed with `-N 2 --T 20 --w0 10 --w1 20 --copies 5`.

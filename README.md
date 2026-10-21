@@ -11,6 +11,7 @@ The simulations use the Gillespie stochastic simulation algorithm (SSA) with var
 | `plasmid_sweep/` | Plasmid copy-number sweeps for the four circuit architectures. |
 | `resource_sweep/` | RNAP/ribosome resource sweeps for the four circuit architectures. |
 | `event_counting/` | Event-resolved SSA comparisons of autocrine and paracrine architectures. |
+| `multicell_population_sweep/` | Explicit 10-cell population simulations coupled through shared extracellular signal pools. |
 
 ## Circuit labels
 
@@ -18,7 +19,7 @@ The simulations use the Gillespie stochastic simulation algorithm (SSA) with var
 |---|---|
 | Autocrine (nc-3) | Lux-only circuit in one cell: pCon-luxI, pCon-luxR, and pLux-eGFP. |
 | Paracrine (c-3) | Lux sender and receiver split across two cells. |
-| Autocrine (c-6) | Lux-Las circuit in one cell. |
+| Autocrine (nc-6) | Lux-Las circuit colocated within the same noncommunicating population. |
 | Paracrine (c-6) | Lux-Las circuit split across two cells. |
 
 ## Plasmid sweep
@@ -49,7 +50,7 @@ Run the three-plasmid and six-plasmid comparisons:
 
 ```bash
 python event_counting/scripts/run_event_counter_nc3_vs_c3.py --out event_counting/outputs/nc3_vs_c3
-python event_counting/scripts/run_event_counter_c6.py --out event_counting/outputs/c6
+python event_counting/scripts/run_event_counter_nc6_vs_c6.py --out event_counting/outputs/nc6_vs_c6
 ```
 
 ## Installation
@@ -70,6 +71,12 @@ Run resource sweeps:
 
 ```bash
 python resource_sweep/scripts/run_all_resource_sweeps.py
+```
+
+Run the explicit multicell population simulations:
+
+```bash
+python multicell_population_sweep/scripts/run_multicell_population_sweeps.py --workers 4
 ```
 
 Large raw timelapse outputs are written to `outputs/` folders and are ignored by default.

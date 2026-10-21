@@ -1,0 +1,7 @@
+outputs/
+smoke_outputs/
+__pycache__/
+*.py[cod]
+.superpowers/
+docs/superpowers/
+_validation_smoke_outputs/
