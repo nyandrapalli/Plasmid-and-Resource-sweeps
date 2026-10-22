@@ -12,6 +12,7 @@ The simulations use the Gillespie stochastic simulation algorithm (SSA) with var
 | `resource_sweep/` | RNAP/ribosome resource sweeps for the four circuit architectures. |
 | `event_counting/` | Event-resolved SSA comparisons of autocrine and paracrine architectures. |
 | `multicell_population_sweep/` | Explicit 10-cell population simulations coupled through shared extracellular signal pools. |
+| `diffusion_time_sweep/` | Copy-40 signal-transfer-time sweeps for Paracrine (c-3) and Paracrine (c-6). |
 
 ## Circuit labels
 
@@ -77,6 +78,12 @@ Run the explicit multicell population simulations:
 
 ```bash
 python multicell_population_sweep/scripts/run_multicell_population_sweeps.py --workers 4
+```
+
+Run the signal-transfer-time sweeps at plasmid copy number 40:
+
+```bash
+python diffusion_time_sweep/scripts/run_all_diffusion_time_sweeps_copy40.py
 ```
 
 Large raw timelapse outputs are written to `outputs/` folders and are ignored by default.
